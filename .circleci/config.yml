@@ -44,7 +44,7 @@ workflows:
   ci-test:
     jobs:
       - build-and-test
-      - deploy
+      - deploy:
         requires:
           - build-and-test
         filters:

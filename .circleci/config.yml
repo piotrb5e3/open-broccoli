@@ -28,12 +28,12 @@ jobs:
   deploy:
     docker:
       - image: circleci/android:api-30
-      steps:
-        - checkout
-        - run:
-            name: Publish to the play store
-            command: |
-              ./gradlew publishRelease
+    steps:
+      - checkout
+      - run:
+          name: Publish to the play store
+          command: |
+            ./gradlew publishRelease
 
 
 workflows:

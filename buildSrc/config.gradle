@@ -2,7 +2,7 @@ ext {
     appVersion = [
         major: 0,
         minor: 1,
-        patch: 0,
+        patch: 1,
     ]
     appVersionStr = "${appVersion.major}.${appVersion.minor}.${appVersion.patch}"
     appVersionCode = appVersion.major * 10000 + appVersion.minor * 100 + appVersion.patch

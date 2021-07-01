@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion androidConf.compileSdk
+    buildToolsVersion androidConf.buildTools
+
+    signingConfigs {
+        release {
+            storeFile file("signing_keystore.jks")
+            storePassword System.getenv('SIGNING_PASSWORD')
+            keyAlias 'key0'
+            keyPassword System.getenv('SIGNING_PASSWORD')
+        }
+    }
+
+    defaultConfig {
+        applicationId "pw.zerobit.openbroccoli"
+        minSdkVersion androidConf.minSdk
+        targetSdkVersion androidConf.targetSdk
+        versionCode appVersionCode
+        versionName appVersionStr
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${deps.kotlin}"
+    implementation "androidx.core:core-ktx:${deps.coreKtx}"
+    implementation "androidx.appcompat:appcompat:${deps.appcompat}"
+    implementation "com.google.android.material:material:${deps.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${deps.constraintlayout}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${deps.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${deps.navigation}"
+
+    testImplementation "junit:junit:${testDeps.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${testDeps.androidTest}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${testDeps.espresso}"
+}

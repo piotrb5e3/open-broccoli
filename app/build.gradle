@@ -1,15 +1,9 @@
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'com.github.triplet.play' version deps.publisherPlugin
-}
-
-play {
-    // Pass Service Account keys via the ANDROID_PUBLISHER_CREDENTIALS env variable
-    track.set("internal")
-    userFraction.set(1)
-    releaseStatus.set(ReleaseStatus.COMPLETED)
-    defaultToAppBundles.set(true)
+    id 'com.github.triplet.play'
 }
 
 android {
@@ -55,6 +49,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+}
+
+play {
+    // Pass Service Account keys via the ANDROID_PUBLISHER_CREDENTIALS env variable
+    track.set("internal")
+    releaseStatus.set(ReleaseStatus.COMPLETED)
+    defaultToAppBundles.set(true)
 }
 
 dependencies {

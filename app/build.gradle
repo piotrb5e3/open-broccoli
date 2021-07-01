@@ -7,6 +7,15 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    signingConfigs {
+        release {
+            storeFile file("signing_keystore.jks")
+            storePassword System.getenv('SIGNING_PASSWORD')
+            keyAlias 'key0'
+            keyPassword System.getenv('SIGNING_PASSWORD')
+        }
+    }
+
     defaultConfig {
         applicationId "pw.zerobit.openbroccoli"
         minSdkVersion 16
@@ -21,6 +30,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
         }
     }
     compileOptions {

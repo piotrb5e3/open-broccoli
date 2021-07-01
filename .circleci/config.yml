@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Publish to the play store
           command: |
-            ./gradlew publishRelease
+            ./gradlew publishReleaseBundle
 
 
 workflows:
